@@ -9,18 +9,22 @@ d3.json('https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
     console.log(samplesDemographics[0])
     let samplesPlotData = samplesData.samples
     console.log(samplesPlotData[0])
+    let sampleLabels = samplesPlotData[0].otu_ids.map(element => `OTU ${element}`)
+    let sampleValues = samplesPlotData[0].sample_values
     let traceBar = {
-        x: samplesPlotData[0].sample_values.slice(0,10),
-        y: samplesPlotData[0].otu_ids,
+        x: sampleValues.slice(0,10).reverse(),
+        y: sampleLabels.slice(0,10).reverse(),
         type: 'bar',
         orientation: 'h',
-        width: 100,
-        hovertext: samplesPlotData[0].otu_labels
+        // width: 1,
+        text: samplesPlotData[0].otu_labels
     }
-
+    // console.log(samplesPlotData[0].sample_values.slice(0,10))
+    // console.log(yValues)
     let layoutBar = {
         xaxis: {automargin: true}
     }
+
     Plotly.newPlot('bar', [traceBar], layoutBar)
 })
 
