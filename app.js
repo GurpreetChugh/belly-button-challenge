@@ -74,15 +74,19 @@ function init(data)  {
     }
 
     let layoutBubble = {
-      width: 800,
-      height: 600
+      width: 1000,
+      height: 600,
+      xaxis: {showgrid: false},
+      yaxis: {showgrid: false}
     }
 
     Plotly.newPlot('bubble', [traceBubble], layoutBubble)
 }
 
-
-
+// Creating Event handler function
+function optionChanged(id, my_array) {
+  
+}
 
 
 
