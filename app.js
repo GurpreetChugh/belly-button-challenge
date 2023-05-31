@@ -84,7 +84,53 @@ function init(data)  {
 }
 
 // Creating Event handler function
-function optionChanged(id, my_array) {
+function optionChanged(id) {
+    // capturing the index of the sample id selected on dropdown and displaying the demographic for that sample id
+    idIndex = samplesData.names.indexOf(id)
+    d3.select('#sample-metadata')
+      .selectAll('p')
+      .data(Object.entries(sampleDemographics[idIndex]))
+      .enter()
+      .append('p')
+      .text(value => `${value[0]} : ${value[1]}`) 
+    
+      // updating plotly charts
+      sampleIdLabels = samplesData.samples[idIndex].otu_ids.map(element => `OTU ${element}`)
+      sampleIdValues = samplesData.samples[idIndex].sample_values
+      let idtraceBar = {
+        x: sampleIdValues.slice(0,10).reverse(),
+        y: sampleIdLabels.slice(0,10).reverse(),
+        type: 'bar',
+        orientation: 'h',       
+        text: samplesData.samples[idIndex].otu_labels
+    }
+
+    let idlayoutBar = {
+            xaxis: {automargin: true},
+            width: 800,
+            height: 600
+    }
+
+    Plotly.newPlot('bar', [traceBar], layoutBar)
+
+    let idtraceBubble = {
+        x: samplePlotData.otu_ids,
+        y: samplePlotData.sample_values,
+        mode: 'markers',
+        marker: {
+          size: samplePlotData.sample_values,
+          color: samplePlotData.otu_ids
+        },
+        text: samplePlotData.otu_labels
+    }
+
+    let idlayoutBubble = {
+      width: 1000,
+      height: 600,
+      xaxis: {showgrid: false},
+      yaxis: {showgrid: false}
+    }
+
   
 }
 
