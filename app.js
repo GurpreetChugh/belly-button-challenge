@@ -16,7 +16,7 @@ function getOptionValues(my_array) {
     .data(my_array.names)
     .enter()
     .append('option')
-    .attr('values', value => value
+    .attr('value', value => value
     )
     .text(value => value)
 }
@@ -32,13 +32,13 @@ function init(data)  {
     let sampleLabels = samplePlotData.otu_ids.map(element => `OTU ${element}`)
     let sampleValues = samplePlotData.sample_values
 
-    d3.select('#selDataset')
-      .selectAll('option')
-      .data(sampleID)
-      .enter()
-      .append('option')
-      .attr('value', sampleID)
-      .text(sampleID)
+    // d3.select('#selDataset')
+    //   .selectAll('option')
+    //   .data(sampleID)
+    //   .enter()
+    //   .append('option')
+    //   .attr('value', sampleID)
+    //   .text(sampleID)
 
     d3.select('#sample-metadata')
       .selectAll('p')
@@ -85,70 +85,70 @@ function init(data)  {
 }
 
 // Creating Event handler function
-function optionChanged(id) {
-    // capturing the index of the sample id selected on dropdown and displaying the demographic for that sample id
-    idIndex = samplesData.names.indexOf(id)
-    d3.select('#sample-metadata')
-      .selectAll('p')
-      .data(Object.entries(sampleDemographics[idIndex]))
-      .enter()
-      .append('p')
-      .text(value => `${value[0]} : ${value[1]}`) 
+// function optionChanged() {
+//    let optionId = d3.select('#selDataset').property('value')  
+//   // capturing the index of the sample id selected on dropdown and displaying the demographic for that sample id
+//     idIndex = samplesData.names.indexOf(optionId)
+//     d3.select('#sample-metadata')
+//       .selectAll('p')
+//       .data(Object.entries(sampleDemographics[idIndex]))    
+//       .text(value => `${value[0]} : ${value[1]}`) 
     
-      // updating plotly charts
-    sampleIdLabels = samplesData.samples[idIndex].otu_ids.map(element => `OTU ${element}`)
-    sampleIdValues = samplesData.samples[idIndex].sample_values
+//       // updating plotly charts
 
-    let updateBar = {
-        x: [sampleIdValues.slice(0,10).reverse()],
-        y: [sampleIdLabels.slice(0,10).reverse()]
-    }
+//     sampleIdLabels = samplesData.samples[idIndex].otu_ids.map(element => `OTU ${element}`)
+//     sampleIdValues = samplesData.samples[idIndex].sample_values
 
-    //   let idtraceBar = {
-    //     x: sampleIdValues.slice(0,10).reverse(),
-    //     y: sampleIdLabels.slice(0,10).reverse(),
-    //     type: 'bar',
-    //     orientation: 'h',       
-    //     text: samplesData.samples[idIndex].otu_labels
-    // }
+//     let updateBar = {
+//         x: [sampleIdValues.slice(0,10).reverse()],
+//         y: [sampleIdLabels.slice(0,10).reverse()]
+//     }
 
-    // let idlayoutBar = {
-    //         xaxis: {automargin: true},
-    //         width: 800,
-    //         height: 600
-    // }
+//     //   let idtraceBar = {
+//     //     x: sampleIdValues.slice(0,10).reverse(),
+//     //     y: sampleIdLabels.slice(0,10).reverse(),
+//     //     type: 'bar',
+//     //     orientation: 'h',       
+//     //     text: samplesData.samples[idIndex].otu_labels
+//     // }
 
-    Plotly.restyle('bar', updateBar)
+//     // let idlayoutBar = {
+//     //         xaxis: {automargin: true},
+//     //         width: 800,
+//     //         height: 600
+//     // }
 
-    let updateBubble = {
-      y : [sampleIdValues],
-      marker: {
-        size: sampleIdValues
-      }
-    }
+//     Plotly.restyle('bar', updateBar)
 
-    plot.restyle('bubble', updateBubble )
+//     let updateBubble = {
+//       y : [sampleIdValues],
+//       marker: {
+//         size: sampleIdValues
+//       }
+//     }
 
-    // let idtraceBubble = {
-    //     x: samplePlotData.otu_ids,
-    //     y: samplePlotData.sample_values,
-    //     mode: 'markers',
-    //     marker: {
-    //       size: samplePlotData.sample_values,
-    //       color: samplePlotData.otu_ids
-    //     },
-    //     text: samplePlotData.otu_labels
-    // }
+//     plot.restyle('bubble', updateBubble )
 
-    // let idlayoutBubble = {
-    //   width: 1000,
-    //   height: 600,
-    //   xaxis: {showgrid: false},
-    //   yaxis: {showgrid: false}
-    // }
+//     // let idtraceBubble = {
+//     //     x: samplePlotData.otu_ids,
+//     //     y: samplePlotData.sample_values,
+//     //     mode: 'markers',
+//     //     marker: {
+//     //       size: samplePlotData.sample_values,
+//     //       color: samplePlotData.otu_ids
+//     //     },
+//     //     text: samplePlotData.otu_labels
+//     // }
+
+//     // let idlayoutBubble = {
+//     //   width: 1000,
+//     //   height: 600,
+//     //   xaxis: {showgrid: false},
+//     //   yaxis: {showgrid: false}
+//     // }
 
   
-}
+// }
 
 
 
