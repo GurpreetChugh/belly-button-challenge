@@ -37,6 +37,7 @@ function init(data)  {
     }
 
     let layoutBar = {
+            title: 'Top 10 OTUs in a sample',
             xaxis: {automargin: true},
             width: 800,
             height: 600
@@ -56,6 +57,7 @@ function init(data)  {
     }
 
     let layoutBubble = {
+      title: 'OTUs Values in a sample',
       width: 1000,
       height: 600,
 
